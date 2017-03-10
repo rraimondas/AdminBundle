@@ -1,0 +1,8 @@
+platform:
+    admin:
+        menu:
+            main:
+                configuration:
+                    header: Configuration
+                    locales: Locales
+                    admin_users: Administrators

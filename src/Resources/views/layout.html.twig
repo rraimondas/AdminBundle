@@ -1,0 +1,27 @@
+{% extends 'SyliusUiBundle:Layout:sidebar.html.twig' %}
+
+{% block title %}Sylius | {% endblock %}
+
+{% block stylesheets %}
+    {% include 'SyliusUiBundle::_stylesheets.html.twig' with {'path': 'assets/admin/css/style.css'} %}
+{% endblock %}
+
+{% block topbar %}
+    <a class="icon item" id="sidebar-toggle" title="{{ 'sylius.ui.toggle_sidebar'|trans }}">
+        <i class="sidebar icon"></i>
+    </a>
+    {% include 'PlatformAdminBundle::_security.html.twig' %}
+{% endblock %}
+
+{% block sidebar %}
+    <a class="item" href="{{ path('platform_admin_dashboard_index') }}"><b>Admin platform</b></a>
+    {{ knp_menu_render('platform_admin.main', {'template': 'SyliusUiBundle:Menu:sidebar.html.twig', 'currentClass': 'active'}) }}
+{% endblock %}
+
+{% block footer %}
+    {{ 'sylius.ui.powered_by'|trans }} <a href="http://sylius.org" target="_blank">Sylius</a>.
+{% endblock %}
+
+{% block javascripts %}
+    {% include 'SyliusUiBundle::_javascripts.html.twig' with {'path': 'assets/admin/js/app.js'} %}
+{% endblock %}

@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="platform_admin.context.locale.admin_based" class="Platform\Bundle\AdminBundle\Context\AdminBasedLocaleContext">
+            <argument type="service" id="security.token_storage" />
+
+            <tag name="sylius.context.locale" />
+        </service>
+
+        <service id="platform_admin.context.locale.request_based" class="Sylius\Bundle\LocaleBundle\Context\RequestBasedLocaleContext">
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="sylius.locale_provider" />
+
+            <tag name="sylius.context.locale" priority="64" />
+        </service>
+
+
+    </services>
+</container>

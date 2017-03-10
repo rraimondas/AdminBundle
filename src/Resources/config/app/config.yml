@@ -1,0 +1,47 @@
+imports:
+    - { resource: "@SyliusLocaleBundle/Resources/config/app/config.yml" }
+    - { resource: "@PlatformAdminBundle/Resources/config/grids/admin_user.yml" }
+    - { resource: "@PlatformAdminBundle/Resources/config/grids/locale.yml" }
+
+sylius_resource:
+    drivers:
+        - doctrine/orm
+
+sylius_grid:
+    drivers:
+        - doctrine/orm
+    templates:
+        action:
+            default: "@SyliusUi/Grid/Action/default.html.twig"
+            create: "@SyliusUi/Grid/Action/create.html.twig"
+            delete: "@SyliusUi/Grid/Action/delete.html.twig"
+            show: "@SyliusUi/Grid/Action/show.html.twig"
+            update: "@SyliusUi/Grid/Action/update.html.twig"
+            apply_transition: "@SyliusUi/Grid/Action/applyTransition.html.twig"
+            links: "@SyliusUi/Grid/Action/links.html.twig"
+            archive: "@SyliusUi/Grid/Action/archive.html.twig"
+        filter:
+            string: "@SyliusUi/Grid/Filter/string.html.twig"
+            boolean: "@SyliusUi/Grid/Filter/boolean.html.twig"
+            date: "@SyliusUi/Grid/Filter/date.html.twig"
+            entity: "@SyliusUi/Grid/Filter/entity.html.twig"
+            money: "@SyliusUi/Grid/Filter/money.html.twig"
+            exists: "@SyliusUi/Grid/Filter/exists.html.twig"
+
+sylius_locale:
+    locale: "%locale%"
+
+sylius_user:
+    resources:
+        admin:
+            user:
+                classes:
+                    model: Platform\Bundle\AdminBundle\Model\AdminUser
+                    repository: Sylius\Bundle\UserBundle\Doctrine\ORM\UserRepository
+                    form: Platform\Bundle\AdminBundle\Form\Type\AdminUserType
+        admin_oauth:
+            user:
+                classes:
+                    model: Sylius\Component\User\Model\UserOAuth
+                    interface: Sylius\Component\User\Model\UserOAuthInterface
+                    controller: Sylius\Bundle\ResourceBundle\Controller\ResourceController
