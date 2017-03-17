@@ -33,7 +33,7 @@ class AdminBasedLocaleContext implements LocaleContextInterface
         }
 
         $adminUser = $token->getUser();
-        if (false ===$adminUser instanceof AdminUserInterface) {
+        if (false === $adminUser instanceof AdminUserInterface) {
             throw new LocaleNotFoundException();
         }
 

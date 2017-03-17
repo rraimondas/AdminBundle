@@ -19,6 +19,11 @@
             <tag name="sylius.context.locale" priority="64" />
         </service>
 
+        <service id="platform_admin.context.locale.provider_based" class="Sylius\Component\Locale\Context\ProviderBasedLocaleContext">
+            <argument type="service" id="sylius.locale_provider" />
+
+            <tag name="sylius.context.locale" priority="-128" />
+        </service>
 
     </services>
 </container>
