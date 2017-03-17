@@ -7,17 +7,10 @@
     <imports>
         <import resource="services/context.xml" />
         <import resource="services/controller.xml" />
+        <import resource="services/event_listener.xml" />
         <import resource="services/installer_setup.xml" />
-        <import resource="services/listener.xml" />
         <import resource="services/menu.xml" />
         <import resource="services/twig.xml" />
     </imports>
-
-
-    <!--<services>-->
-        <!--<service id="platform_admin.twig_extension.currency" class="Platform\Bundle\AdminBundle\Twig\Extension\CurrencyExtension">-->
-            <!--<tag name="twig.extension" />-->
-        <!--</service>-->
-    <!--</services>-->
 
 </container>

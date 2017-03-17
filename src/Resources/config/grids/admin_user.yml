@@ -1,10 +1,10 @@
 sylius_grid:
     grids:
-        platform_admin_user:
+        admin_platform_admin_user:
             driver:
                 name: doctrine/orm
                 options:
-                    class: "%sylius.model.admin_user.class%"
+                    class: "%admin_platform.model.admin_user.class%"
             sorting:
                 createdAt: desc
             fields:

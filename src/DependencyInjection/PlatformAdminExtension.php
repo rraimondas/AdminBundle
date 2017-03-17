@@ -21,8 +21,10 @@ class PlatformAdminExtension extends AbstractResourceExtension
         $config = $this->processConfiguration($this->getConfiguration($config, $container), $config);
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
-        $this->registerResources('sylius', $config['driver'], $config['resources'], $container);
+        $this->registerResources('admin_platform', $config['driver'], $config['resources'], $container);
 
         $loader->load('services.xml');
+
+        $container->setParameter('admin_platform.driver', $config['driver']);
     }
 }

@@ -38,7 +38,7 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $locale = $this->get('platform_admin.setup.locale')->setup($input, $output);
+        $locale = $this->get('admin_platform.setup.locale')->setup($input, $output);
 
         $this->setupAdministratorUser($input, $output, $locale->getCode());
     }

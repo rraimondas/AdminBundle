@@ -3,7 +3,7 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
 
-        <service id="sylius.listener.canonicalizer" class="Platform\Bundle\AdminBundle\EventListener\CanonicalizerListener">
+        <service id="admin_platform.event_listener.canonicalizer" class="Platform\Bundle\AdminBundle\EventListener\CanonicalizerListener">
             <argument type="service" id="sylius.canonicalizer" />
 
             <tag name="doctrine.event_listener" event="prePersist" />

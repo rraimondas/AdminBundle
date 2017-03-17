@@ -1,11 +1,11 @@
-platform_admin_locale:
+admin_platform_locale:
     resource: |
         alias: sylius.locale
         section: admin
         templates: PlatformAdminBundle:Crud
         except: ['show', 'delete']
         redirect: index
-        grid: platform_admin_locale
+        grid: admin_platform_locale
         permission: true
         vars:
             all:

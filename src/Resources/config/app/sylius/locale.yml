@@ -1,0 +1,6 @@
+imports:
+    - { resource: "@SyliusLocaleBundle/Resources/config/app/config.yml" }
+    - { resource: "@PlatformAdminBundle/Resources/config/grids/locale.yml" }
+
+sylius_locale:
+    locale: "%locale%"

@@ -1,12 +1,12 @@
-platform_admin_user:
+admin_platform_admin_user:
     resource: |
-        alias: sylius.admin_user
+        alias: admin_platform.admin_user
         section: admin
         path: users
         templates: PlatformAdminBundle:Crud
         except: ['show']
         redirect: index
-        grid: platform_admin_user
+        grid: admin_platform_admin_user
         permission: true
         vars:
             all:

@@ -1,0 +1,17 @@
+imports:
+    - { resource: "@PlatformAdminBundle/Resources/config/grids/admin_user.yml" }
+
+sylius_user:
+    resources:
+        admin:
+            user:
+                classes:
+                    model: Platform\Bundle\AdminBundle\Model\AdminUser
+                    repository: Sylius\Bundle\UserBundle\Doctrine\ORM\UserRepository
+                    form: Platform\Bundle\AdminBundle\Form\Type\AdminUserType
+        admin_oauth:
+            user:
+                classes:
+                    model: Sylius\Component\User\Model\UserOAuth
+                    interface: Sylius\Component\User\Model\UserOAuthInterface
+                    controller: Sylius\Bundle\ResourceBundle\Controller\ResourceController

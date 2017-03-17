@@ -1,7 +1,7 @@
 {% import '@PlatformAdmin/Macro/breadcrumb.html.twig' as breadcrumb %}
 
 {% set breadcrumbs = [
-        { label: 'sylius.ui.administration'|trans, url: path('platform_admin_dashboard_index') },
+        { label: 'sylius.ui.administration'|trans, url: path('admin_platform_admin_dashboard_index') },
         { label: (metadata.applicationName~'.ui.'~metadata.pluralName)|trans, url: path(configuration.getRouteName('index'), configuration.vars.route.parameters|default({})) },
         { label: 'sylius.ui.new'|trans }
     ]

@@ -6,7 +6,7 @@
 
     <services>
 
-        <service id="platform_admin.twig_extension.currency" class="Platform\Bundle\AdminBundle\Twig\Extension\CurrencyExtension">
+        <service id="admin_platform.twig_extension.currency" class="Platform\Bundle\AdminBundle\Twig\Extension\CurrencyExtension">
             <tag name="twig.extension" />
         </service>
 

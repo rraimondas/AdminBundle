@@ -6,7 +6,7 @@
 
     <services>
 
-        <service id="platform_admin.setup.locale" class="Platform\Bundle\AdminBundle\Installer\Setup\LocaleSetup">
+        <service id="admin_platform.setup.locale" class="Platform\Bundle\AdminBundle\Installer\Setup\LocaleSetup">
             <argument type="service" id="sylius.repository.locale" />
             <argument type="service" id="sylius.factory.locale" />
 

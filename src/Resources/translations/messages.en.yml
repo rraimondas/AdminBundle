@@ -1,8 +1,9 @@
-platform:
-    admin:
-        menu:
-            main:
-                configuration:
-                    header: Configuration
-                    locales: Locales
-                    admin_users: Administrators
+admin_platform:
+    menu:
+        main:
+            configuration:
+                header: Configuration
+                locales: Locales
+                admin_users: Administrators
+    ui:
+        admin_users: Administrators

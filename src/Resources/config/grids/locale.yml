@@ -1,6 +1,6 @@
 sylius_grid:
     grids:
-        platform_admin_locale:
+        admin_platform_locale:
             driver:
                 name: doctrine/orm
                 options:

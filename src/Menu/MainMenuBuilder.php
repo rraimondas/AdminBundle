@@ -9,7 +9,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class MainMenuBuilder
 {
-    const EVENT_NAME = 'platform_admin.menu.main';
+    const EVENT_NAME = 'admin_platform.menu.main';
 
     /**
      * @var FactoryInterface
@@ -54,17 +54,17 @@ class MainMenuBuilder
     {
         $configuration = $menu
             ->addChild('configuration')
-            ->setLabel('platform.admin.menu.main.configuration.header');
+            ->setLabel('admin_platform.menu.main.configuration.header');
 
         $configuration
             ->addChild('locales', ['route' => 'sylius_admin_locale_index'])
-            ->setLabel('platform.admin.menu.main.configuration.locales')
+            ->setLabel('admin_platform.menu.main.configuration.locales')
             ->setLabelAttribute('icon', 'translate')
         ;
 
         $configuration
-            ->addChild('admin_users', ['route' => 'sylius_admin_admin_user_index'])
-            ->setLabel('platform.admin.menu.main.configuration.admin_users')
+            ->addChild('admin_users', ['route' => 'admin_platform_admin_admin_user_index'])
+            ->setLabel('admin_platform.menu.main.configuration.admin_users')
             ->setLabelAttribute('icon', 'lock')
         ;
     }

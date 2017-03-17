@@ -1,6 +1,6 @@
 {% extends 'SyliusUiBundle:Layout:sidebar.html.twig' %}
 
-{% block title %}Sylius | {% endblock %}
+{% block title %}Admin platform | {% endblock %}
 
 {% block stylesheets %}
     {% include 'SyliusUiBundle::_stylesheets.html.twig' with {'path': 'assets/admin/css/style.css'} %}
@@ -14,8 +14,8 @@
 {% endblock %}
 
 {% block sidebar %}
-    <a class="item" href="{{ path('platform_admin_dashboard_index') }}"><b>Admin platform</b></a>
-    {{ knp_menu_render('platform_admin.main', {'template': 'SyliusUiBundle:Menu:sidebar.html.twig', 'currentClass': 'active'}) }}
+    <a class="item" href="{{ path('admin_platform_admin_dashboard_index') }}"><b>Admin platform</b></a>
+    {{ knp_menu_render('admin_platform.menu.main', {'template': 'SyliusUiBundle:Menu:sidebar.html.twig', 'currentClass': 'active'}) }}
 {% endblock %}
 
 {% block footer %}
