@@ -2,6 +2,7 @@
 
 namespace Platform\Bundle\AdminBundle\DependencyInjection;
 
+use Platform\Bundle\AdminBundle\Form\Type\AdminUserType;
 use Platform\Bundle\AdminBundle\Model\AdminUser;
 use Platform\Bundle\AdminBundle\Model\AdminUserInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
@@ -54,7 +55,7 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
                                         ->scalarNode('repository')->cannotBeEmpty()->end()
                                         ->scalarNode('factory')->defaultValue(Factory::class)->end()
-//                                        ->scalarNode('form')->defaultValue(LocaleType::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('form')->defaultValue(AdminUserType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()

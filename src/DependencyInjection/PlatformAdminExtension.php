@@ -19,7 +19,7 @@ class PlatformAdminExtension extends AbstractResourceExtension
     public function load(array $config, ContainerBuilder $container)
     {
         $config = $this->processConfiguration($this->getConfiguration($config, $container), $config);
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
         $this->registerResources('admin_platform', $config['driver'], $config['resources'], $container);
 
