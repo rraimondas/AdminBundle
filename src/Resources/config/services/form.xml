@@ -6,8 +6,8 @@
 
     <services>
 
-        <service id="admin_platform.model.admin_user" class="Platform\Bundle\AdminBundle\Model\AdminUser">
-            <argument>Platform\Bundle\AdminBundle\Model\AdminUser</argument>
+        <service id="admin_platform.form.type.admin_user" class="Platform\Bundle\AdminBundle\Form\Type\AdminUserType">
+            <argument>%admin_platform.model.admin_user.class%</argument>
             <tag name="form.type" />
         </service>
 
