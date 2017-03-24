@@ -25,7 +25,6 @@ class AdminUserType extends UserType
             ])
             ->add('localeCode', LocaleType::class, [
                 'label' => 'sylius.ui.locale',
-                'placeholder' => null,
             ])
         ;
     }
