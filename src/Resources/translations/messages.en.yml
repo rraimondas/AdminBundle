@@ -1,4 +1,8 @@
 admin_platform:
+    form:
+        user:
+            first_name: First name
+            last_name: Last name
     menu:
         main:
             configuration:
@@ -7,3 +11,5 @@ admin_platform:
                 admin_users: Administrators
     ui:
         admin_users: Administrators
+        edit_admin_user: Edit admin user
+        new_admin_user: New admin user
