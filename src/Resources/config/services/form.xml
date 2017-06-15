@@ -4,10 +4,17 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <parameters>
+        <parameter key="admin_platform.form.type.admin_user.validation_groups" type="collection">
+            <parameter>admin_platform</parameter>
+        </parameter>
+    </parameters>
+
     <services>
 
         <service id="admin_platform.form.type.admin_user" class="Platform\Bundle\AdminBundle\Form\Type\AdminUserType">
             <argument>%admin_platform.model.admin_user.class%</argument>
+            <argument>%admin_platform.form.type.admin_user.validation_groups%</argument>
             <tag name="form.type" />
         </service>
 
