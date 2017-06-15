@@ -10,5 +10,10 @@
             <tag name="doctrine.event_listener" event="preUpdate" />
         </service>
 
+        <service id="admin_platform.listener.password_updater" class="Sylius\Bundle\UserBundle\EventListener\PasswordUpdaterListener">
+            <argument type="service" id="sylius.security.password_updater" />
+            <tag name="kernel.event_listener" event="admin_platform.admin_user.pre_update" method="genericEventUpdater" />
+        </service>
+
     </services>
 </container>
