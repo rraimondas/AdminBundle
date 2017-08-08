@@ -40,9 +40,9 @@ class MainMenuBuilder
     {
         $menu = $this->factory->createItem('root');
 
-        $this->eventDispatcher->dispatch(self::EVENT_NAME, new MenuBuilderEvent($this->factory, $menu));
-
         $this->addConfigurationSubMenu($menu);
+
+        $this->eventDispatcher->dispatch(self::EVENT_NAME, new MenuBuilderEvent($this->factory, $menu));
 
         return $menu;
     }
