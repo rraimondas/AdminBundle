@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Platform\Bundle\AdminBundle\Context;
 
 use Platform\Bundle\AdminBundle\Model\AdminUserInterface;
@@ -25,7 +27,7 @@ class AdminBasedLocaleContext implements LocaleContextInterface
     /**
      * {@inheritdoc}
      */
-    public function getLocaleCode()
+    public function getLocaleCode(): string
     {
         $token = $this->tokenStorage->getToken();
         if (null === $token) {

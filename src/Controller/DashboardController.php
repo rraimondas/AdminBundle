@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Platform\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class DashboardController
 {
@@ -21,7 +24,7 @@ class DashboardController
         $this->templating = $templating;
     }
 
-    public function indexAction()
+    public function indexAction(): Response
     {
         return $this->templating->renderResponse('PlatformAdminBundle:Dashboard:index.html.twig');
     }

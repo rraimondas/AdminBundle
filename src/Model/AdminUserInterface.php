@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Platform\Bundle\AdminBundle\Model;
 
 use Sylius\Component\User\Model\UserInterface;
@@ -11,30 +13,30 @@ interface AdminUserInterface extends UserInterface
     /**
      * @return string
      */
-    public function getFirstName();
+    public function getFirstName(): string;
 
     /**
      * @param string $firstName
      */
-    public function setFirstName($firstName);
+    public function setFirstName(string $firstName): void;
 
     /**
      * @return string
      */
-    public function getLastName();
+    public function getLastName():string;
 
     /**
      * @param string $lastName
      */
-    public function setLastName($lastName);
+    public function setLastName(string $lastName): void;
 
     /**
      * @return string
      */
-    public function getLocaleCode();
+    public function getLocaleCode(): string;
     
     /**
      * @param string $code
      */
-    public function setLocaleCode($code);
+    public function setLocaleCode(string $code): void;
 }
