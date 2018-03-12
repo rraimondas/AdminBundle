@@ -1,0 +1,11 @@
+platform_admin:
+    user:
+        email:
+            unique: This email address is in use.
+            not_blank: Email address must be given.
+            invalid: This email is invalid
+        username:
+            unique: This email username is in use.
+            not_blank: Username must be given.
+        locale_code:
+            not_blank: Locale must be given.

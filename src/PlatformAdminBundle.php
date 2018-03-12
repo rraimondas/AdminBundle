@@ -4,14 +4,13 @@ namespace Platform\Bundle\AdminBundle;
 
 use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class PlatformAdminBundle extends AbstractResourceBundle
 {
     /**
      * {@inheritdoc}
      */
-    public function getSupportedDrivers()
+    public function getSupportedDrivers(): array
     {
         return [
             SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
@@ -21,7 +20,7 @@ class PlatformAdminBundle extends AbstractResourceBundle
     /**
      * {@inheritdoc}
      */
-    protected function getModelNamespace()
+    protected function getModelNamespace(): ?string
     {
         return 'Platform\Bundle\AdminBundle\Model';
     }

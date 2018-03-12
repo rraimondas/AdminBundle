@@ -8,6 +8,9 @@ admin_platform_admin_user:
         redirect: index
         grid: admin_platform_admin_user
         permission: true
+        form:
+            options:
+                validation_groups: [platform_admin]
         vars:
             all:
                 subheader: sylius.ui.manage_users_able_to_access_administration_panel
