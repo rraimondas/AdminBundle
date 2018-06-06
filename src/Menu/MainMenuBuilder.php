@@ -65,6 +65,12 @@ class MainMenuBuilder
         $configuration
             ->addChild('roles', ['route' => 'sylius_admin_role_index'])
             ->setLabel('admin_platform.menu.main.configuration.roles')
+            ->setLabelAttribute('icon', 'low vision')
+        ;
+
+        $configuration
+            ->addChild('permissions', ['route' => 'sylius_admin_permission_index'])
+            ->setLabel('admin_platform.menu.main.configuration.permissions')
             ->setLabelAttribute('icon', 'shield alternate')
         ;
 
