@@ -1,17 +1,18 @@
 {
     "name": "admin-platform/admin-bundle",
     "type": "symfony-bundle",
-    "description": "Admin platform for Symfony2 projects.",
+    "description": "Admin bundle for Symfony projects.",
     "license": "MIT",
     "require": {
         "php": "^7.1",
 
-        "sylius/grid-bundle": "^1.0.0",
-        "sylius/locale-bundle": "^1.0.0",
-        "sylius/mailer-bundle": "^1.0.0",
-        "sylius/resource-bundle": "^1.0.0",
-        "sylius/ui-bundle": "^1.0.0",
-        "sylius/user-bundle": "^1.0.0"
+        "admin-platform/rbac-bundle": "^1.0",
+        "sylius/grid-bundle": "^1.0",
+        "sylius/locale-bundle": "^1.0",
+        "sylius/mailer-bundle": "^1.0",
+        "sylius/resource-bundle": "^1.0",
+        "sylius/ui-bundle": "^1.0",
+        "sylius/user-bundle": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.6"

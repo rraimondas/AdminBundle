@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Platform\Bundle\AdminBundle\Model;
 
+use Sylius\Component\Rbac\Model\IdentityInterface;
 use Sylius\Component\User\Model\UserInterface;
 
-interface AdminUserInterface extends UserInterface
+interface AdminUserInterface extends UserInterface, IdentityInterface
 {
     public const DEFAULT_ADMIN_ROLE = 'ROLE_ADMINISTRATION_ACCESS';
 

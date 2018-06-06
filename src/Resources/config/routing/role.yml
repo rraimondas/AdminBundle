@@ -1,0 +1,20 @@
+admin_platform_role:
+    resource: |
+        alias: sylius.role
+        section: admin
+        path: roles
+        templates: PlatformAdminBundle:Crud
+        except: ['show']
+        redirect: index
+        grid: admin_platform_role
+        form:
+            options:
+                validation_groups: [platform_admin]
+        vars:
+            all:
+                subheader: sylius.ui.manage_users_able_to_access_administration_panel
+                templates:
+                    form: PlatformAdminBundle:AdminUser:_form.html.twig
+            index:
+                icon: lock
+    type: sylius.resource

@@ -7,6 +7,8 @@
     <import resource="routing/admin_user.yml" />
     <import resource="routing/dashboard.yml" />
     <import resource="routing/locale.yml" />
+    <import resource="routing/permission.yml" />
+    <import resource="routing/role.yml" />
     <import resource="routing/security.yml" />
 
 </routes>

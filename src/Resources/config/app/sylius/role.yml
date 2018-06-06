@@ -1,0 +1,3 @@
+imports:
+    - { resource: "@SyliusRbacBundle/Resources/config/app/config.yml" }
+    - { resource: "@PlatformAdminBundle/Resources/config/grids/role.yml" }

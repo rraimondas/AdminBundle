@@ -1,5 +1,7 @@
 imports:
     - { resource: "@PlatformAdminBundle/Resources/config/app/sylius/grid.yml" }
     - { resource: "@PlatformAdminBundle/Resources/config/app/sylius/locale.yml" }
+#    - { resource: "@PlatformAdminBundle/Resources/config/app/sylius/permission.yml" }
     - { resource: "@PlatformAdminBundle/Resources/config/app/sylius/resource.yml" }
+    - { resource: "@PlatformAdminBundle/Resources/config/app/sylius/role.yml" }
     - { resource: "@PlatformAdminBundle/Resources/config/app/sylius/user.yml" }

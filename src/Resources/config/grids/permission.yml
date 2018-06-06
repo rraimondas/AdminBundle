@@ -1,0 +1,23 @@
+sylius_grid:
+    grids:
+        admin_platform_permission:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%sylius.model.permission.class%"
+            fields:
+                description:
+                    type: string
+                    label: sylius.ui.description
+                updatedAt:
+                    type: datetime
+                    label: sylius.ui.last_update
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

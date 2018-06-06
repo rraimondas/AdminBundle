@@ -1,0 +1,21 @@
+sylius_grid:
+    grids:
+        admin_platform_role:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%sylius.model.role.class%"
+            fields:
+                name:
+                    type: string
+                    label: sylius.ui.code
+                updatedAt:
+                    type: datetime
+                    label: sylius.ui.last_update
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
