@@ -2,7 +2,11 @@
 
 namespace Platform\Bundle\AdminBundle\Command;
 
+use Doctrine\ORM\EntityManagerInterface;
+use Platform\Bundle\AdminBundle\Installer\Setup\LocaleSetup;
 use Platform\Bundle\AdminBundle\Model\AdminUserInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
+use Sylius\Component\User\Repository\UserRepositoryInterface;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -11,12 +15,49 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Webmozart\Assert\Assert;
 
 class SetupCommand extends AbstractInstallCommand
 {
     const DEFAULT_USER_EMAIL = 'admin-platform@example.com';
     const DEFAULT_USER_PASSWORD = 'admin-platform';
+
+    /**
+     * @var LocaleSetup
+     */
+    private $localeSetup;
+
+    /**
+     * @var EntityManagerInterface
+     */
+    private $userManager;
+
+    /**
+     * @var FactoryInterface
+     */
+    private $userFactory;
+
+    /**
+     * @var UserRepositoryInterface
+     */
+    private $userRepository;
+
+    /**
+     * @var ValidatorInterface
+     */
+    private $validator;
+
+    public function __construct(LocaleSetup $localeSetup, EntityManagerInterface $userManager, FactoryInterface $userFactory, UserRepositoryInterface $userRepository, ValidatorInterface $validator)
+    {
+        parent::__construct();
+
+        $this->localeSetup = $localeSetup;
+        $this->userManager = $userManager;
+        $this->userFactory = $userFactory;
+        $this->userRepository = $userRepository;
+        $this->validator = $validator;
+    }
 
     /**
      * {@inheritdoc}
@@ -38,7 +79,7 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $locale = $this->get('admin_platform.setup.locale')->setup($input, $output);
+        $locale = $this->localeSetup->setup($input, $output);
 
         $this->setupAdministratorUser($input, $output, $locale->getCode());
     }
@@ -54,11 +95,9 @@ EOT
     {
         $outputStyle = new SymfonyStyle($input, $output);
         $outputStyle->writeln('Create your administrator account.');
-        $userManager = $this->get('sylius.manager.admin_user');
-        $userFactory = $this->get('sylius.factory.admin_user');
 
         try {
-            $user = $this->configureNewUser($userFactory->createNew(), $input, $output);
+            $user = $this->configureNewUser($this->userFactory->createNew(), $input, $output);
         } catch (\InvalidArgumentException $exception) {
             return 0;
         }
@@ -66,8 +105,8 @@ EOT
         $user->setEnabled(true);
         $user->setLocaleCode($localeCode);
 
-        $userManager->persist($user);
-        $userManager->flush();
+        $this->userManager->persist($user);
+        $this->userManager->flush();
         
         $outputStyle->writeln('<info>Administrator account successfully registered.</info>');
         $outputStyle->newLine();
@@ -82,10 +121,8 @@ EOT
      */
     private function configureNewUser(AdminUserInterface $user, InputInterface $input, OutputInterface $output)
     {
-        $userRepository = $this->get('sylius.repository.admin_user');
-
         if ($input->getOption('no-interaction')) {
-            Assert::null($userRepository->findOneByEmail(self::DEFAULT_USER_EMAIL));
+            Assert::null($this->userRepository->findOneByEmail(self::DEFAULT_USER_EMAIL));
             
             $user->setEmail(self::DEFAULT_USER_EMAIL);
             $user->setPlainPassword(self::DEFAULT_USER_PASSWORD);
@@ -98,7 +135,7 @@ EOT
         do {
             $question = $this->createEmailQuestion($output);
             $email = $questionHelper->ask($input, $output, $question);
-            $exists = null !== $userRepository->findOneByEmail($email);
+            $exists = null !== $this->userRepository->findOneByEmail($email);
             
             if ($exists) {
                 $output->writeln('<error>E-Mail is already in use!</error>');
@@ -121,7 +158,7 @@ EOT
         return (new Question('E-mail:'))
             ->setValidator(function ($value) use ($output) {
                 /** @var ConstraintViolationListInterface $errors */
-                $errors = $this->get('validator')->validate((string) $value, [new Email(), new NotBlank()]);
+                $errors = $this->validator->validate((string) $value, [new Email(), new NotBlank()]);
                 foreach ($errors as $error) {
                     throw new \DomainException($error->getMessage());
                 }
@@ -166,7 +203,7 @@ EOT
     {
         return function ($value) use ($output) {
             /** @var ConstraintViolationListInterface $errors */
-            $errors = $this->get('validator')->validate($value, [new NotBlank()]);
+            $errors = $this->validator->validate($value, [new NotBlank()]);
             foreach ($errors as $error) {
                 throw new \DomainException($error->getMessage());
             }

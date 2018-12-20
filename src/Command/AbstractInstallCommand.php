@@ -2,11 +2,11 @@
 
 namespace Platform\Bundle\AdminBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-abstract class AbstractInstallCommand extends ContainerAwareCommand
+abstract class AbstractInstallCommand extends Command
 {
     /**
      * @var CommandExecutor
@@ -26,15 +26,5 @@ abstract class AbstractInstallCommand extends ContainerAwareCommand
             $output,
             $application
         );
-    }
-
-    /**
-     * @param $id
-     *
-     * @return object
-     */
-    protected function get($id)
-    {
-        return $this->getContainer()->get($id);
     }
 }
