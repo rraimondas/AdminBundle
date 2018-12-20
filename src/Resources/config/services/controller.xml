@@ -6,7 +6,7 @@
 
     <services>
 
-        <service id="admin_platform.controller.dashboard" class="Platform\Bundle\AdminBundle\Controller\DashboardController">
+        <service id="admin_platform.controller.dashboard" class="Platform\Bundle\AdminBundle\Controller\DashboardController" public="true">
             <argument type="service" id="templating" />
         </service>
 
