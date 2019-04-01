@@ -1,6 +1,6 @@
 admin_platform_admin_user:
     resource: |
-        alias: admin_platform.admin_user
+        alias: sylius.admin_user
         section: admin
         path: users
         templates: PlatformAdminBundle:Crud

@@ -1,0 +1,12 @@
+parameters:
+    admin_platform.driver: doctrine/orm
+
+doctrine:
+    orm:
+        mappings:
+            admin_platform:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/vendor/admin-platform/admin-bundle/src/Resources/config/doctrine/model'
+                prefix: 'Platform\Bundle\AdminBundle\Model'
+                alias: PlatformAdminBundle

@@ -16,7 +16,7 @@ class DashboardController
 
     /**
      * DashboardController constructor.
-     * 
+     *
      * @param EngineInterface $templating
      */
     public function __construct(EngineInterface $templating)

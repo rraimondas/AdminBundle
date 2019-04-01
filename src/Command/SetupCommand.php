@@ -107,7 +107,7 @@ EOT
 
         $this->userManager->persist($user);
         $this->userManager->flush();
-        
+
         $outputStyle->writeln('<info>Administrator account successfully registered.</info>');
         $outputStyle->newLine();
     }
@@ -123,7 +123,7 @@ EOT
     {
         if ($input->getOption('no-interaction')) {
             Assert::null($this->userRepository->findOneByEmail(self::DEFAULT_USER_EMAIL));
-            
+
             $user->setEmail(self::DEFAULT_USER_EMAIL);
             $user->setPlainPassword(self::DEFAULT_USER_PASSWORD);
 
@@ -136,7 +136,7 @@ EOT
             $question = $this->createEmailQuestion($output);
             $email = $questionHelper->ask($input, $output, $question);
             $exists = null !== $this->userRepository->findOneByEmail($email);
-            
+
             if ($exists) {
                 $output->writeln('<error>E-Mail is already in use!</error>');
             }
@@ -185,7 +185,7 @@ EOT
             $confirmPasswordQuestion = $this->createPasswordQuestion('Confirm password:', $validator);
             $password = $questionHelper->ask($input, $output, $passwordQuestion);
             $repeatedPassword = $questionHelper->ask($input, $output, $confirmPasswordQuestion);
-            
+
             if ($repeatedPassword !== $password) {
                 $output->writeln('<error>Passwords do not match!</error>');
             }
@@ -211,6 +211,7 @@ EOT
             return $value;
         };
     }
+
     /**
      * @param string $message
      * @param \Closure $validator

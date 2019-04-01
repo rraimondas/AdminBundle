@@ -1,6 +1,4 @@
 sylius_grid:
-    drivers:
-        - "%admin_platform.driver%"
     templates:
         action:
             default: "@SyliusUi/Grid/Action/default.html.twig"
