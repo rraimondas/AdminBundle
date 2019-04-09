@@ -2,7 +2,7 @@ sylius_grid:
     grids:
         admin_platform_locale:
             driver:
-                name: doctrine/orm
+                name: '%admin_platform.driver%'
                 options:
                     class: "%sylius.model.locale.class%"
             sorting:

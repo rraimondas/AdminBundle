@@ -34,7 +34,7 @@ interface AdminUserInterface extends UserInterface
      * @return string
      */
     public function getLocaleCode(): ?string;
-    
+
     /**
      * @param string $code
      */

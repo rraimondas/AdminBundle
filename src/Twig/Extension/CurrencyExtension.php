@@ -18,7 +18,7 @@ class CurrencyExtension extends \Twig_Extension
 
     /**
      * @param string $code
-     * 
+     *
      * @return null|string
      */
     public function convertCurrencyCodeToSymbol($code)

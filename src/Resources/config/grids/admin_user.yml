@@ -2,9 +2,9 @@ sylius_grid:
     grids:
         admin_platform_admin_user:
             driver:
-                name: doctrine/orm
+                name: '%admin_platform.driver%'
                 options:
-                    class: "%admin_platform.model.admin_user.class%"
+                    class: "%sylius.model.admin_user.class%"
             sorting:
                 createdAt: desc
             fields:

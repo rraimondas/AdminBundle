@@ -63,7 +63,7 @@ class MainMenuBuilder
         ;
 
         $configuration
-            ->addChild('admin_users', ['route' => 'admin_platform_admin_admin_user_index'])
+            ->addChild('admin_users', ['route' => 'sylius_admin_admin_user_index'])
             ->setLabel('admin_platform.menu.main.configuration.admin_users')
             ->setLabelAttribute('icon', 'lock')
         ;

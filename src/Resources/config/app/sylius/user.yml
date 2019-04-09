@@ -7,7 +7,9 @@ sylius_user:
             user:
                 classes:
                     model: Platform\Bundle\AdminBundle\Model\AdminUser
+                    controller: Sylius\Bundle\ResourceBundle\Controller\ResourceController
                     repository: Sylius\Bundle\UserBundle\Doctrine\ORM\UserRepository
+                    factory: Sylius\Component\Resource\Factory\Factory
                     form: Platform\Bundle\AdminBundle\Form\Type\AdminUserType
         admin_oauth:
             user:
