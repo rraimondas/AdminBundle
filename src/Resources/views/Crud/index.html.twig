@@ -8,6 +8,6 @@
 {% block title %}{{ parent() }} {{ header|trans }}{% endblock %}
 
 {% block content %}
-{% include 'PlatformAdminBundle:Crud/Index:_header.html.twig' %}
+{% include '@PlatformAdmin/Crud/Index/_header.html.twig' %}
 {% include '@PlatformAdmin/Crud/Index/_content.html.twig' %}
 {% endblock %}
