@@ -26,6 +26,6 @@ class DashboardController
 
     public function indexAction(): Response
     {
-        return $this->templating->renderResponse('PlatformAdminBundle:Dashboard:index.html.twig');
+        return $this->templating->renderResponse('@PlatformAdmin/Dashboard/index.html.twig');
     }
 }

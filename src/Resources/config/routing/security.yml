@@ -4,7 +4,7 @@ admin_platform_admin_login:
     defaults:
         _controller: sylius.controller.security:loginAction
         _sylius:
-            template: PlatformAdminBundle:Security:login.html.twig
+            template: '@PlatformAdmin/Security/login.html.twig'
             permission: true
 
 admin_platform_admin_login_check:

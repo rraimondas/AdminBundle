@@ -1,4 +1,4 @@
-{% extends 'SyliusUiBundle:Layout:sidebar.html.twig' %}
+{% extends '@SyliusUi/Layout/sidebar.html.twig' %}
 
 {% block title %}Admin platform | {% endblock %}
 
@@ -15,7 +15,7 @@
 
 {% block sidebar %}
     <a class="item" href="{{ path('admin_platform_admin_dashboard_index') }}"><b>Admin platform</b></a>
-    {{ knp_menu_render('admin_platform.menu.main', {'template': 'SyliusUiBundle:Menu:sidebar.html.twig', 'currentClass': 'active'}) }}
+    {{ knp_menu_render('admin_platform.menu.main', {'template': '@SyliusUi/Menu/sidebar.html.twig', 'currentClass': 'active'}) }}
 {% endblock %}
 
 {% block footer %}
