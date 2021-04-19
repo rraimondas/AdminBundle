@@ -20,36 +20,26 @@ use Webmozart\Assert\Assert;
 
 class SetupCommand extends AbstractInstallCommand
 {
-    const DEFAULT_USER_EMAIL = 'admin-platform@example.com';
-    const DEFAULT_USER_PASSWORD = 'admin-platform';
+    protected const DEFAULT_USER_EMAIL = 'admin-platform@example.com';
+    protected const DEFAULT_USER_PASSWORD = 'admin-platform';
 
-    /**
-     * @var LocaleSetup
-     */
-    private $localeSetup;
+    private LocaleSetup $localeSetup;
 
-    /**
-     * @var EntityManagerInterface
-     */
-    private $userManager;
+    private EntityManagerInterface $userManager;
 
-    /**
-     * @var FactoryInterface
-     */
-    private $userFactory;
+    private FactoryInterface $userFactory;
 
-    /**
-     * @var UserRepositoryInterface
-     */
-    private $userRepository;
+    private UserRepositoryInterface $userRepository;
 
-    /**
-     * @var ValidatorInterface
-     */
-    private $validator;
+    private ValidatorInterface $validator;
 
-    public function __construct(LocaleSetup $localeSetup, EntityManagerInterface $userManager, FactoryInterface $userFactory, UserRepositoryInterface $userRepository, ValidatorInterface $validator)
-    {
+    public function __construct(
+        LocaleSetup $localeSetup,
+        EntityManagerInterface $userManager,
+        FactoryInterface $userFactory,
+        UserRepositoryInterface $userRepository,
+        ValidatorInterface $validator
+    ) {
         parent::__construct();
 
         $this->localeSetup = $localeSetup;
@@ -59,39 +49,26 @@ class SetupCommand extends AbstractInstallCommand
         $this->validator = $validator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('admin-platform:install:setup')
             ->setDescription('Admin platform configuration setup.')
-            ->setHelp(<<<EOT
+            ->setHelp(
+                <<<EOT
 The <info>%command.name%</info> command allows user to configure basic Admin platform data.
 EOT
-            )
-        ;
+            );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $locale = $this->localeSetup->setup($input, $output);
 
         $this->setupAdministratorUser($input, $output, $locale->getCode());
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     * @param $localeCode
-     *
-     * @return int
-     */
-    private function setupAdministratorUser(InputInterface $input, OutputInterface $output, $localeCode)
+    private function setupAdministratorUser(InputInterface $input, OutputInterface $output, ?string $localeCode): void
     {
         $outputStyle = new SymfonyStyle($input, $output);
         $outputStyle->writeln('Create your administrator account.');
@@ -99,7 +76,7 @@ EOT
         try {
             $user = $this->configureNewUser($this->userFactory->createNew(), $input, $output);
         } catch (\InvalidArgumentException $exception) {
-            return 0;
+            return;
         }
 
         $user->setEnabled(true);
@@ -112,15 +89,11 @@ EOT
         $outputStyle->newLine();
     }
 
-    /**
-     * @param AdminUserInterface $user
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     *
-     * @return AdminUserInterface
-     */
-    private function configureNewUser(AdminUserInterface $user, InputInterface $input, OutputInterface $output)
-    {
+    private function configureNewUser(
+        AdminUserInterface $user,
+        InputInterface $input,
+        OutputInterface $output
+    ): AdminUserInterface {
         if ($input->getOption('no-interaction')) {
             Assert::null($this->userRepository->findOneByEmail(self::DEFAULT_USER_EMAIL));
 
@@ -148,32 +121,22 @@ EOT
         return $user;
     }
 
-    /**
-     * @param OutputInterface $output
-     *
-     * @return Question
-     */
-    private function createEmailQuestion(OutputInterface $output)
+    private function createEmailQuestion(OutputInterface $output): Question
     {
         return (new Question('E-mail:'))
-            ->setValidator(function ($value) use ($output) {
-                /** @var ConstraintViolationListInterface $errors */
-                $errors = $this->validator->validate((string) $value, [new Email(), new NotBlank()]);
-                foreach ($errors as $error) {
-                    throw new \DomainException($error->getMessage());
-                }
+            ->setValidator(
+                function ($value) use ($output) {
+                    $errors = $this->validator->validate((string)$value, [new Email(), new NotBlank()]);
+                    foreach ($errors as $error) {
+                        throw new \DomainException($error->getMessage());
+                    }
 
-                return $value;
-            })
+                    return $value;
+                }
+            )
             ->setMaxAttempts(3);
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     *
-     * @return mixed
-     */
     private function getAdministratorPassword(InputInterface $input, OutputInterface $output)
     {
         /** @var QuestionHelper $questionHelper */
@@ -194,11 +157,6 @@ EOT
         return $password;
     }
 
-    /**
-     * @param OutputInterface $output
-     *
-     * @return \Closure
-     */
     private function getPasswordQuestionValidator(OutputInterface $output)
     {
         return function ($value) use ($output) {
@@ -212,13 +170,7 @@ EOT
         };
     }
 
-    /**
-     * @param string $message
-     * @param \Closure $validator
-     *
-     * @return Question
-     */
-    private function createPasswordQuestion($message, \Closure $validator)
+    private function createPasswordQuestion($message, \Closure $validator): Question
     {
         return (new Question($message))
             ->setValidator($validator)

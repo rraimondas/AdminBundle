@@ -7,44 +7,24 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Intl\Intl;
+use Symfony\Component\Intl\Languages;
 
 class LocaleSetup
 {
-    /**
-     * @var RepositoryInterface
-     */
-    private $repository;
+    private RepositoryInterface $repository;
 
-    /**
-     * @var FactoryInterface
-     */
-    private $factory;
+    private FactoryInterface $factory;
 
-    /**
-     * @var string
-     */
-    private $locale;
+    private string $locale;
 
-    /**
-     * @param RepositoryInterface $repository
-     * @param FactoryInterface $factory
-     * @param string $locale
-     */
-    public function __construct(RepositoryInterface $repository, FactoryInterface $factory, $locale)
+    public function __construct(RepositoryInterface $repository, FactoryInterface $factory, string $locale)
     {
         $this->repository = $repository;
         $this->factory = $factory;
         $this->locale = trim($locale);
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     *
-     * @return LocaleInterface
-     */
-    public function setup(InputInterface $input, OutputInterface $output)
+    public function setup(InputInterface $input, OutputInterface $output): LocaleInterface
     {
         $name = $this->getLanguageName($this->locale);
         $output->writeln(sprintf('Adding <info>%s</info> locale.', $name));
@@ -62,13 +42,8 @@ class LocaleSetup
         return $locale;
     }
 
-    /**
-     * @param string $code
-     *
-     * @return string|null
-     */
-    private function getLanguageName($code)
+    private function getLanguageName(string $code): string
     {
-        return Intl::getLanguageBundle()->getLanguageName($code);
+        return Languages::getName($code);
     }
 }

@@ -8,39 +8,24 @@ use Sylius\Component\User\Model\UserInterface;
 
 class CanonicalizerListener
 {
-    /**
-     * @var CanonicalizerInterface
-     */
-    private $canonicalizer;
+    private CanonicalizerInterface $canonicalizer;
 
-    /**
-     * @param CanonicalizerInterface $canonicalizer
-     */
     public function __construct(CanonicalizerInterface $canonicalizer)
     {
         $this->canonicalizer = $canonicalizer;
     }
 
-    /**
-     * @param LifecycleEventArgs $event
-     */
-    public function prePersist(LifecycleEventArgs $event)
+    public function prePersist(LifecycleEventArgs $event): void
     {
         $this->canonicalize($event);
     }
 
-    /**
-     * @param LifecycleEventArgs $event
-     */
-    public function preUpdate(LifecycleEventArgs $event)
+    public function preUpdate(LifecycleEventArgs $event): void
     {
         $this->canonicalize($event);
     }
 
-    /**
-     * @param LifecycleEventArgs $event
-     */
-    private function canonicalize(LifecycleEventArgs $event)
+    private function canonicalize(LifecycleEventArgs $event): void
     {
         $item = $event->getEntity();
 
