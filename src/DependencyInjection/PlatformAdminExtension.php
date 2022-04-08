@@ -9,10 +9,8 @@ use Symfony\Component\DependencyInjection\Loader;
 
 class PlatformAdminExtension extends Extension
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function load(array $config, ContainerBuilder $container): void
+    /** {@inheritdoc} */
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
