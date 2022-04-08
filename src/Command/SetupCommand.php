@@ -7,6 +7,7 @@ use Platform\Bundle\AdminBundle\Installer\Setup\LocaleSetup;
 use Platform\Bundle\AdminBundle\Model\AdminUserInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\User\Repository\UserRepositoryInterface;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -14,7 +15,6 @@ use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Webmozart\Assert\Assert;
 
@@ -61,11 +61,13 @@ EOT
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $locale = $this->localeSetup->setup($input, $output);
 
         $this->setupAdministratorUser($input, $output, $locale->getCode());
+
+        return Command::SUCCESS;
     }
 
     private function setupAdministratorUser(InputInterface $input, OutputInterface $output, ?string $localeCode): void
@@ -137,11 +139,11 @@ EOT
             ->setMaxAttempts(3);
     }
 
-    private function getAdministratorPassword(InputInterface $input, OutputInterface $output)
+    private function getAdministratorPassword(InputInterface $input, OutputInterface $output): string
     {
         /** @var QuestionHelper $questionHelper */
         $questionHelper = $this->getHelper('question');
-        $validator = $this->getPasswordQuestionValidator($output);
+        $validator = $this->getPasswordQuestionValidator();
 
         do {
             $passwordQuestion = $this->createPasswordQuestion('Choose password:', $validator);
@@ -157,10 +159,9 @@ EOT
         return $password;
     }
 
-    private function getPasswordQuestionValidator(OutputInterface $output)
+    private function getPasswordQuestionValidator()
     {
-        return function ($value) use ($output) {
-            /** @var ConstraintViolationListInterface $errors */
+        return function ($value) {
             $errors = $this->validator->validate($value, [new NotBlank()]);
             foreach ($errors as $error) {
                 throw new \DomainException($error->getMessage());
@@ -170,7 +171,7 @@ EOT
         };
     }
 
-    private function createPasswordQuestion($message, \Closure $validator): Question
+    private function createPasswordQuestion(string $message, \Closure $validator): Question
     {
         return (new Question($message))
             ->setValidator($validator)
