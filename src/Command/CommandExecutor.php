@@ -44,9 +44,8 @@ class CommandExecutor
 
             $errorMessage = sprintf('The command terminated with an error code: %u.', $exitCode);
             $this->output->writeln("<error>$errorMessage</error>");
-            $exception = new \Exception($errorMessage, $exitCode);
 
-            throw $exception;
+            throw new \Exception($errorMessage, $exitCode);
         }
 
         return $this;

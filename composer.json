@@ -4,14 +4,14 @@
     "description": "Admin platform for Symfony projects.",
     "license": "MIT",
     "require": {
-        "php": "^7.4",
-        "sylius/grid-bundle": "^1.9",
-        "sylius/locale-bundle": "^1.9",
+        "php": "^8.0",
+        "sylius/grid-bundle": "^1.10",
+        "sylius/locale-bundle": "^1.11",
         "sylius/mailer-bundle": "^1.6",
-        "sylius/resource-bundle": "^1.8",
-        "sylius/ui-bundle": "^1.9",
-        "sylius/user-bundle": "^1.9",
-        "symfony/process": "^5.2"
+        "sylius/resource-bundle": "^1.9",
+        "sylius/ui-bundle": "^1.11",
+        "sylius/user-bundle": "^1.11",
+        "symfony/process": "^6.0"
     },
     "config": {
         "bin-dir": "bin"
