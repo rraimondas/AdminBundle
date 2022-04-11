@@ -7,7 +7,7 @@
     <services>
 
         <service id="admin_platform.controller.dashboard" class="Platform\Bundle\AdminBundle\Controller\DashboardController" public="true">
-            <argument type="service" id="templating" />
+            <argument type="service" id="twig" />
         </service>
 
     </services>
