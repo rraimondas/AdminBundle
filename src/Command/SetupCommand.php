@@ -3,6 +3,7 @@
 namespace Platform\Bundle\AdminBundle\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
+use InvalidArgumentException;
 use Platform\Bundle\AdminBundle\Installer\Setup\LocaleSetup;
 use Platform\Bundle\AdminBundle\Model\AdminUserInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
@@ -77,7 +78,7 @@ EOT
 
         try {
             $user = $this->configureNewUser($this->userFactory->createNew(), $input, $output);
-        } catch (\InvalidArgumentException $exception) {
+        } catch (InvalidArgumentException $exception) {
             return;
         }
 
@@ -110,7 +111,7 @@ EOT
         do {
             $question = $this->createEmailQuestion($output);
             $email = $questionHelper->ask($input, $output, $question);
-            $exists = null !== $this->userRepository->findOneByEmail($email);
+            $exists = $this->userRepository->findOneByEmail($email) !== null;
 
             if ($exists) {
                 $output->writeln('<error>E-Mail is already in use!</error>');

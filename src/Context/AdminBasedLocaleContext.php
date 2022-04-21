@@ -21,12 +21,12 @@ class AdminBasedLocaleContext implements LocaleContextInterface
     public function getLocaleCode(): string
     {
         $token = $this->tokenStorage->getToken();
-        if (null === $token) {
+        if ($token === null) {
             throw new LocaleNotFoundException();
         }
 
         $adminUser = $token->getUser();
-        if (false === $adminUser instanceof AdminUserInterface) {
+        if (!$adminUser instanceof AdminUserInterface) {
             throw new LocaleNotFoundException();
         }
 

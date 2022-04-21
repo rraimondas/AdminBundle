@@ -5,7 +5,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
-        "sylius/grid-bundle": "1.11-rc.3",
+        "sylius/grid-bundle": "^1.11",
         "sylius/locale-bundle": "^1.11",
         "sylius/mailer-bundle": "^1.6",
         "sylius/resource-bundle": "^1.9",

@@ -29,9 +29,11 @@ class CanonicalizerListener
     {
         $item = $event->getEntity();
 
-        if ($item instanceof UserInterface) {
-            $item->setUsernameCanonical($this->canonicalizer->canonicalize($item->getUsername()));
-            $item->setEmailCanonical($this->canonicalizer->canonicalize($item->getEmail()));
+        if (!$item instanceof UserInterface) {
+            return;
         }
+
+        $item->setUsernameCanonical($this->canonicalizer->canonicalize($item->getUsername()));
+        $item->setEmailCanonical($this->canonicalizer->canonicalize($item->getEmail()));
     }
 }

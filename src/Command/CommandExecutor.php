@@ -35,11 +35,11 @@ class CommandExecutor
         $this->application->setAutoExit(false);
         $exitCode = $this->application->run(new ArrayInput($parameters), $output ?: new NullOutput());
 
-        if (1 === $exitCode) {
+        if ($exitCode === 1) {
             throw new RuntimeException('This command terminated with a permission error');
         }
 
-        if (0 !== $exitCode) {
+        if ($exitCode !== 0) {
             $this->application->setAutoExit(true);
 
             $errorMessage = sprintf('The command terminated with an error code: %u.', $exitCode);

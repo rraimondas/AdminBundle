@@ -9,6 +9,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Intl\Languages;
 
+use function trim;
+use function sprintf;
+
 class LocaleSetup
 {
     private RepositoryInterface $repository;
@@ -30,7 +33,7 @@ class LocaleSetup
         $output->writeln(sprintf('Adding <info>%s</info> locale.', $name));
         $existingLocale = $this->repository->findOneBy(['code' => $this->locale]);
 
-        if (null !== $existingLocale) {
+        if ($existingLocale !== null) {
             return $existingLocale;
         }
 
