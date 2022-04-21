@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Platform\Bundle\AdminBundle\Model;
 
 use Sylius\Component\User\Model\User;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
-class AdminUser extends User implements AdminUserInterface
+class AdminUser extends User implements AdminUserInterface, PasswordAuthenticatedUserInterface
 {
     protected ?string $firstName = null;
 

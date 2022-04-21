@@ -5,13 +5,14 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
-        "sylius/grid-bundle": "^1.10",
+        "sylius/grid-bundle": "1.11-rc.3",
         "sylius/locale-bundle": "^1.11",
         "sylius/mailer-bundle": "^1.6",
         "sylius/resource-bundle": "^1.9",
         "sylius/ui-bundle": "^1.11",
         "sylius/user-bundle": "^1.11",
-        "symfony/process": "^5.4"
+        "symfony/process": "^5.4",
+        "liip/imagine-bundle": "^2.7"
     },
     "config": {
         "bin-dir": "bin"
