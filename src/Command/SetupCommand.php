@@ -62,13 +62,11 @@ EOT
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $locale = $this->localeSetup->setup($input, $output);
 
         $this->setupAdministratorUser($input, $output, $locale->getCode());
-
-        return Command::SUCCESS;
     }
 
     private function setupAdministratorUser(InputInterface $input, OutputInterface $output, ?string $localeCode): void
